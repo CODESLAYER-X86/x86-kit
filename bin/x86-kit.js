@@ -56,6 +56,7 @@ program
       // Create symlinks
       const targetAgent = path.join(targetDir, '.agent');
       const targetClaude = path.join(targetDir, '.claude');
+      const targetSuperpowers = path.join(targetDir, '.superpowers');
       
       if (!fs.existsSync(targetAgent)) {
         fs.symlinkSync('.x86-kit', targetAgent, 'dir');
@@ -65,6 +66,11 @@ program
       if (!fs.existsSync(targetClaude)) {
         fs.symlinkSync('.x86-kit/claude', targetClaude, 'dir');
         console.log(pc.green(`✓ Created symlink .claude → .x86-kit/claude`));
+      }
+
+      if (!fs.existsSync(targetSuperpowers)) {
+        fs.symlinkSync('.x86-kit', targetSuperpowers, 'dir');
+        console.log(pc.green(`✓ Created symlink .superpowers → .x86-kit`));
       }
       
       console.log('\n────────────────────────────────────────');
@@ -92,10 +98,12 @@ program
     const targetDir = process.cwd();
     const hasAgent = fs.existsSync(path.join(targetDir, '.agent'));
     const hasClaude = fs.existsSync(path.join(targetDir, '.claude'));
+    const hasSuperpowers = fs.existsSync(path.join(targetDir, '.superpowers'));
     
     console.log('Status:');
     console.log(` .agent : ${hasAgent ? pc.green('Installed') : pc.red('Not Found')}`);
     console.log(` .claude: ${hasClaude ? pc.green('Installed') : pc.red('Not Found')}`);
+    console.log(` .superpowers: ${hasSuperpowers ? pc.green('Installed') : pc.red('Not Found')}`);
   });
 
 // Handle invoking without commands to just run init
