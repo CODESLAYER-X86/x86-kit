@@ -1,0 +1,24 @@
+{
+  "name": "x86-kit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "x86-kit": "./bin/x86-kit.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    ".x86-kit",
+    "bin"
+  ],
+  "keywords": [],
+  "author": "CODESLAYER-X86",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "commander": "^14.0.3",
+    "picocolors": "^1.1.1"
+  }
+}
