@@ -1,109 +1,109 @@
 ---
 name: systematic-debugging
-description: 4-phase systematic debugging methodology with root cause analysis and evidence-based verification. Use when debugging complex issues.
+description: 4-phase systematic debugging methodology with root cause analysis, evidence-based verification, and multi-component tracing. DO NOT fix bugs without using this.
 allowed-tools: Read, Glob, Grep
 ---
 
-# Systematic Debugging
+# Systematic Debugging Protocol
 
-> Source: obra/superpowers
+> **Core principle:** ALWAYS find root cause before attempting fixes. Symptom fixes are failure.
 
-## Overview
-This skill provides a structured approach to debugging that prevents random guessing and ensures problems are properly understood before solving.
+## 🛑 The Iron Law
 
-## 4-Phase Debugging Process
-
-### Phase 1: Reproduce
-Before fixing, reliably reproduce the issue.
-
-```markdown
-## Reproduction Steps
-1. [Exact step to reproduce]
-2. [Next step]
-3. [Expected vs actual result]
-
-## Reproduction Rate
-- [ ] Always (100%)
-- [ ] Often (50-90%)
-- [ ] Sometimes (10-50%)
-- [ ] Rare (<10%)
+```
+NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST
 ```
 
-### Phase 2: Isolate
-Narrow down the source.
+If you haven't completed Phase 1 (Root Cause Analysis), you absolutely *cannot* propose fixes. Random fixes waste time and create new bugs.
+
+---
+
+## The 4-Phase Debugging Process
+
+You MUST complete each phase in order before proceeding to the next.
+
+### Phase 1: Investigate (Reproduce & Isolate)
+
+Before you fix anything:
+1. **Read Errors Carefully:** Read the entire stack trace. Note line numbers, codes, and paths.
+2. **Reproduce:** Can we trigger it reliably? What are the exact steps?
+3. **Isolate:** Check recent git commits to find what changed. What is the smallest change that triggers the issue?
 
 ```markdown
-## Isolation Questions
-- When did this start happening?
-- What changed recently?
-- Does it happen in all environments?
-- Can we reproduce with minimal code?
-- What's the smallest change that triggers it?
+## Phase 1 Checklist
+- [ ] Error message fully read and parsed
+- [ ] Reproducible consistently
+- [ ] Recent commits/changes checked
+- [ ] Minimal reproduction case found
 ```
 
-### Phase 3: Understand
-Find the root cause, not just symptoms.
+### Phase 2: Data-Flow & Multi-Component Tracing
+
+If the system has multiple components (e.g. CI → build → script, or Frontend → API → DB):
+- **Add Diagnostic Hooks First:** Before proposing fixes, add logging at component boundaries and verify what data enters and exits.
+- **Trace Backwards:** Where does the bad value originate? Keep tracing up until you find the source.
+*(See `root-cause-tracing.md` for the complete backward tracing technique).*
+
+### Phase 3: Understand (Root Cause)
+
+Use the "5 Whys" methodology to find the actual root, not the symptom. Form a specific hypothesis.
 
 ```markdown
 ## Root Cause Analysis
-### The 5 Whys
-1. Why: [First observation]
-2. Why: [Deeper reason]
-3. Why: [Still deeper]
-4. Why: [Getting closer]
-5. Why: [Root cause]
+1. Why did this happen? [First observation]
+2. Why did THAT happen? [Deeper reason]
+3. Why did THAT happen? [Root cause found]
+
+**Hypthesis:** "I think [root cause] is the issue because [evidence]."
 ```
 
-### Phase 4: Fix & Verify
-Fix and verify it's truly fixed.
+### Phase 4: Implement & Verify
+
+Fix the root cause and ensure it does not break anything else. Make the **smallest** possible change to test the hypothesis.
 
 ```markdown
-## Fix Verification
-- [ ] Bug no longer reproduces
-- [ ] Related functionality still works
-- [ ] No new issues introduced
-- [ ] Test added to prevent regression
+## Phase 4 Checklist
+- [ ] One single variable changed at a time
+- [ ] Bug is permanently resolved
+- [ ] No regression introduced
+- [ ] **If fix fails 3 times, triggger Architectural Review!**
 ```
 
-## Debugging Checklist
+---
 
-```markdown
-## Before Starting
-- [ ] Can reproduce consistently
-- [ ] Have minimal reproduction case
-- [ ] Understand expected behavior
+## ⚠️ The 3-Strike Rule (Questioning Architecture)
 
-## During Investigation
-- [ ] Check recent changes (git log)
-- [ ] Check logs for errors
-- [ ] Add logging if needed
-- [ ] Use debugger/breakpoints
+If your proposed fix fails 3 times in a row, **STOP.**
+Do NOT attempt a 4th fix.
 
-## After Fix
-- [ ] Root cause documented
-- [ ] Fix verified
-- [ ] Regression test added
-- [ ] Similar code checked
-```
+Count your attempts. If ≥ 3, this is indicative of an underlying **architectural problem** (e.g., tight coupling, shared state), not a simple bug. 
+- Ask the user to reconsider the architectural pattern. 
+- Discuss refactoring vs treating symptoms.
+
+---
 
 ## Common Debugging Commands
 
+Use these exact commands when you need quick insight:
+
 ```bash
-# Recent changes
+# Check recent changes
 git log --oneline -20
 git diff HEAD~5
 
-# Search for pattern
+# Search for pattern across codebase
 grep -r "errorPattern" --include="*.ts"
 
-# Check logs
+# Monitor live logs for errors
 pm2 logs app-name --err --lines 100
 ```
 
-## Anti-Patterns
+---
 
-❌ **Random changes** - "Maybe if I change this..."
-❌ **Ignoring evidence** - "That can't be the cause"
-❌ **Assuming** - "It must be X" without proof
-❌ **Not reproducing first** - Fixing blindly
-❌ **Stopping at symptoms** - Not finding root cause
+## 🚫 Anti-Patterns
+
+❌ **"Maybe if I change this..."** - Random guessing.
+❌ **"I'll write test after fixing"** - Untested fixes do not stick.
+❌ **"Multiple fixes at once"** - You can't isolate what worked.
+❌ **"Let me just add one more patch"** - Violating the 3-Strike Rule.
+❌ **"Quick fix for now"** - First fix establishes the pattern. Do it right.
