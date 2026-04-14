@@ -5,9 +5,9 @@ You are a thinking partner, not an interviewer. The user is the visionary — yo
 </purpose>
 
 <required_reading>
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/domain-probes.md
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/gate-prompts.md
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/universal-anti-patterns.md
+@.claude/get-shit-done/references/domain-probes.md
+@.claude/get-shit-done/references/gate-prompts.md
+@.claude/get-shit-done/references/universal-anti-patterns.md
 </required_reading>
 
 <downstream_awareness>
@@ -147,9 +147,9 @@ Text mode applies to ALL workflows in the session, not just discuss-phase.
 Phase number from argument (required).
 
 ```bash
-INIT=$(node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" init phase-op "${PHASE}")
+INIT=$(node ".claude/get-shit-done/bin/gsd-tools.cjs" init phase-op "${PHASE}")
 if [[ "$INIT" == @file:* ]]; then INIT=$(cat "${INIT#@file:}"); fi
-AGENT_SKILLS_ADVISOR=$(node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" agent-skills gsd-advisor 2>/dev/null)
+AGENT_SKILLS_ADVISOR=$(node ".claude/get-shit-done/bin/gsd-tools.cjs" agent-skills gsd-advisor 2>/dev/null)
 ```
 
 Parse JSON for: `commit_docs`, `phase_found`, `phase_dir`, `phase_number`, `phase_name`, `phase_slug`, `padded_phase`, `has_research`, `has_context`, `has_plans`, `has_verification`, `plan_count`, `roadmap_exists`, `planning_exists`, `response_language`.
@@ -168,7 +168,7 @@ Exit workflow.
 
 **Power mode** — If `--power` is present in ARGUMENTS:
 - Skip interactive questioning entirely
-- Read and execute @/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/discuss-phase-power.md end-to-end
+- Read and execute @.claude/get-shit-done/workflows/discuss-phase-power.md end-to-end
 - Do not continue with the steps below
 
 **Auto mode** — If `--auto` is present in ARGUMENTS:
@@ -331,7 +331,7 @@ Check if any pending todos are relevant to this phase's scope. Surfaces backlog 
 
 **Load and match todos:**
 ```bash
-TODO_MATCHES=$(node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" todo match-phase "${PHASE_NUMBER}")
+TODO_MATCHES=$(node ".claude/get-shit-done/bin/gsd-tools.cjs" todo match-phase "${PHASE_NUMBER}")
 ```
 
 Parse JSON for: `todo_count`, `matches[]` (each with `file`, `title`, `area`, `score`, `reasons`).
@@ -440,7 +440,7 @@ Check if advisor mode should activate:
 
 1. Check for USER-PROFILE.md:
    ```bash
-   PROFILE_PATH="/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/USER-PROFILE.md"
+   PROFILE_PATH=".claude/get-shit-done/USER-PROFILE.md"
    ```
    ADVISOR_MODE = file exists at PROFILE_PATH → true, otherwise → false
 
@@ -456,7 +456,7 @@ Check if advisor mode should activate:
 
 3. Resolve model for advisor agents:
    ```bash
-   ADVISOR_MODEL=$(node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" resolve-model gsd-advisor-researcher --raw)
+   ADVISOR_MODEL=$(node ".claude/get-shit-done/bin/gsd-tools.cjs" resolve-model gsd-advisor-researcher --raw)
    ```
 
 If ADVISOR_MODE is false, skip all advisor-specific steps — workflow proceeds with existing conversational flow unchanged.
@@ -466,7 +466,7 @@ If ADVISOR_MODE is false, skip all advisor-specific steps — workflow proceeds 
 Check USER-PROFILE.md for communication preferences that indicate a non-technical product owner:
 
 ```bash
-PROFILE_CONTENT=$(cat "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/USER-PROFILE.md" 2>/dev/null || true)
+PROFILE_CONTENT=$(cat ".claude/get-shit-done/USER-PROFILE.md" 2>/dev/null || true)
 ```
 
 Set NON_TECHNICAL_OWNER = true if ANY of the following are present in USER-PROFILE.md:
@@ -591,7 +591,7 @@ After user selects gray areas in present_gray_areas, spawn parallel research age
 2. For EACH user-selected gray area, spawn a Task() in parallel:
 
    Task(
-     prompt="First, read @/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/agents/gsd-advisor-researcher.md for your role and instructions.
+     prompt="First, read @.claude/agents/gsd-advisor-researcher.md for your role and instructions.
 
      <gray_area>{area_name}: {area_description from gray area identification}</gray_area>
      <phase_context>{phase_goal and description from ROADMAP.md}</phase_context>
@@ -759,7 +759,7 @@ In `--auto` mode, the discuss step MUST complete in a **single pass**. After wri
 
 Check the pass cap from config:
 ```bash
-MAX_PASSES=$(node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" config-get workflow.max_discuss_passes 2>/dev/null || echo "3")
+MAX_PASSES=$(node ".claude/get-shit-done/bin/gsd-tools.cjs" config-get workflow.max_discuss_passes 2>/dev/null || echo "3")
 ```
 
 If you have already written and committed CONTEXT.md, the discuss step is complete. Move on.
@@ -1105,7 +1105,7 @@ rm -f "${phase_dir}/${padded_phase}-DISCUSS-CHECKPOINT.json"
 Commit phase context and discussion log:
 
 ```bash
-node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" commit "docs(${padded_phase}): capture phase context" --files "${phase_dir}/${padded_phase}-CONTEXT.md" "${phase_dir}/${padded_phase}-DISCUSSION-LOG.md"
+node ".claude/get-shit-done/bin/gsd-tools.cjs" commit "docs(${padded_phase}): capture phase context" --files "${phase_dir}/${padded_phase}-CONTEXT.md" "${phase_dir}/${padded_phase}-DISCUSSION-LOG.md"
 ```
 
 Confirm: "Committed: docs(${padded_phase}): capture phase context"
@@ -1115,7 +1115,7 @@ Confirm: "Committed: docs(${padded_phase}): capture phase context"
 Update STATE.md with session info:
 
 ```bash
-node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" state record-session \
+node ".claude/get-shit-done/bin/gsd-tools.cjs" state record-session \
   --stopped-at "Phase ${PHASE} context gathered" \
   --resume-file "${phase_dir}/${padded_phase}-CONTEXT.md"
 ```
@@ -1123,7 +1123,7 @@ node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin
 Commit STATE.md:
 
 ```bash
-node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" commit "docs(state): record phase ${PHASE} context session" --files .planning/STATE.md
+node ".claude/get-shit-done/bin/gsd-tools.cjs" commit "docs(state): record phase ${PHASE} context session" --files .planning/STATE.md
 ```
 </step>
 
@@ -1134,18 +1134,18 @@ Check for auto-advance trigger:
 2. **Sync chain flag with intent** — if user invoked manually (no `--auto` and no `--chain`), clear the ephemeral chain flag from any previous interrupted `--auto` chain. This does NOT touch `workflow.auto_advance` (the user's persistent settings preference):
    ```bash
    if [[ ! "$ARGUMENTS" =~ --auto ]] && [[ ! "$ARGUMENTS" =~ --chain ]]; then
-     node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" config-set workflow._auto_chain_active false 2>/dev/null
+     node ".claude/get-shit-done/bin/gsd-tools.cjs" config-set workflow._auto_chain_active false 2>/dev/null
    fi
    ```
 3. Read both the chain flag and user preference:
    ```bash
-   AUTO_CHAIN=$(node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" config-get workflow._auto_chain_active 2>/dev/null || echo "false")
-   AUTO_CFG=$(node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" config-get workflow.auto_advance 2>/dev/null || echo "false")
+   AUTO_CHAIN=$(node ".claude/get-shit-done/bin/gsd-tools.cjs" config-get workflow._auto_chain_active 2>/dev/null || echo "false")
+   AUTO_CFG=$(node ".claude/get-shit-done/bin/gsd-tools.cjs" config-get workflow.auto_advance 2>/dev/null || echo "false")
    ```
 
 **If `--auto` or `--chain` flag present AND `AUTO_CHAIN` is not true:** Persist chain flag to config (handles direct usage without new-project):
 ```bash
-node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" config-set workflow._auto_chain_active true
+node ".claude/get-shit-done/bin/gsd-tools.cjs" config-set workflow._auto_chain_active true
 ```
 
 **If `--auto` flag present OR `--chain` flag present OR `AUTO_CHAIN` is true OR `AUTO_CFG` is true:**
@@ -1206,7 +1206,7 @@ When `--power` flag is present in ARGUMENTS, skip interactive questioning and ex
 
 The power user mode generates ALL questions upfront into machine-readable and human-friendly files, then waits for the user to answer at their own pace before processing all answers in a single pass.
 
-**Full step-by-step instructions:** @/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/discuss-phase-power.md
+**Full step-by-step instructions:** @.claude/get-shit-done/workflows/discuss-phase-power.md
 
 **Summary of flow:**
 1. Run the same phase analysis (gray area identification) as standard mode

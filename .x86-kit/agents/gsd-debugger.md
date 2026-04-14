@@ -34,10 +34,10 @@ If the prompt contains a `<required_reading>` block, you MUST use the `Read` too
 </role>
 
 <required_reading>
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/common-bug-patterns.md
+@.claude/get-shit-done/references/common-bug-patterns.md
 </required_reading>
 
-**Project skills:** Check `.claude/skills/` or `.agents/skills/` directory if either exists:
+**Project skills:** Check `.x86-kit/skills/` or `.x86-kit/skills/` directory if either exists:
 1. List available skills (subdirectories)
 2. Read `SKILL.md` for each skill (lightweight index ~130 lines)
 3. Load specific `rules/*.md` files as needed during implementation
@@ -506,12 +506,12 @@ git bisect bad              # or good, based on testing
 **Example:** Stale hook warning persists after update
 ```
 Check code says:  hooksDir = path.join(configDir, 'hooks')
-                  configDir = /home/codeslayer_x86/codeslayer/projects/x86-kit/.claude
-                  → checks /home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/hooks/
+                  configDir = .claude
+                  → checks .claude/hooks/
 
 Installer says:   hooksDest = path.join(targetDir, 'hooks')
-                  targetDir = /home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done
-                  → writes to /home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/hooks/
+                  targetDir = .claude/get-shit-done
+                  → writes to .claude/get-shit-done/hooks/
 
 MISMATCH: Checker looks in wrong directory → hooks "not found" → reported as stale
 ```
@@ -1036,7 +1036,7 @@ Gather symptoms through questioning. Update file after EACH answer.
 
 <step name="investigation_loop">
 At investigation decision points, apply structured reasoning:
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/thinking-models-debug.md
+@.claude/get-shit-done/references/thinking-models-debug.md
 
 **Autonomous investigation. Update file continuously.**
 
@@ -1059,7 +1059,7 @@ At investigation decision points, apply structured reasoning:
 - APPEND to Evidence after each finding
 
 **Phase 1.5: Check common bug patterns**
-- Read @/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/common-bug-patterns.md
+- Read @.claude/get-shit-done/references/common-bug-patterns.md
 - Match symptoms to pattern categories using the Symptom-to-Category Quick Map
 - Any matching patterns become hypothesis candidates for Phase 2
 - If no patterns match, proceed to open-ended hypothesis formation
@@ -1227,7 +1227,7 @@ mv .planning/debug/{slug}.md .planning/debug/resolved/
 **Check planning config using state load (commit_docs is available from the output):**
 
 ```bash
-INIT=$(node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" state load)
+INIT=$(node ".claude/get-shit-done/bin/gsd-tools.cjs" state load)
 if [[ "$INIT" == @file:* ]]; then INIT=$(cat "${INIT#@file:}"); fi
 # commit_docs is in the JSON output
 ```
@@ -1245,7 +1245,7 @@ Root cause: {root_cause}"
 
 Then commit planning docs via CLI (respects `commit_docs` config automatically):
 ```bash
-node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" commit "docs: resolve debug {slug}" --files .planning/debug/resolved/{slug}.md
+node ".claude/get-shit-done/bin/gsd-tools.cjs" commit "docs: resolve debug {slug}" --files .planning/debug/resolved/{slug}.md
 ```
 
 **Append to knowledge base:**
@@ -1276,7 +1276,7 @@ Then append the entry:
 
 Commit the knowledge base update alongside the resolved session:
 ```bash
-node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" commit "docs: update debug knowledge base with {slug}" --files .planning/debug/knowledge-base.md
+node ".claude/get-shit-done/bin/gsd-tools.cjs" commit "docs: update debug knowledge base with {slug}" --files .planning/debug/knowledge-base.md
 ```
 
 Report completion and offer next steps.

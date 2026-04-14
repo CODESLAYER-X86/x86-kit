@@ -177,7 +177,7 @@ const CLAUDE_MD_FALLBACKS = {
   stack: 'Technology stack not yet documented. Will populate after codebase mapping or first phase.',
   conventions: 'Conventions not yet established. Will populate as patterns emerge during development.',
   architecture: 'Architecture not yet mapped. Follow existing patterns found in the codebase.',
-  skills: 'No project skills found. Add skills to any of: `.claude/skills/`, `.agents/skills/`, `.cursor/skills/`, or `.github/skills/` with a `SKILL.md` index file.',
+  skills: 'No project skills found. Add skills to any of: `.x86-kit/skills/`, `.x86-kit/skills/`, `.cursor/skills/`, or `.github/skills/` with a `SKILL.md` index file.',
 };
 
 // Directories where project skills may live (checked in order)

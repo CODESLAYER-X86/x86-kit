@@ -11,7 +11,7 @@ Instantly restore full project context so "Where were we?" has an immediate, com
 </purpose>
 
 <required_reading>
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/continuation-format.md
+@.claude/get-shit-done/references/continuation-format.md
 </required_reading>
 
 <process>
@@ -20,7 +20,7 @@ Instantly restore full project context so "Where were we?" has an immediate, com
 Load all context in one call:
 
 ```bash
-INIT=$(node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" init resume)
+INIT=$(node ".claude/get-shit-done/bin/gsd-tools.cjs" init resume)
 if [[ "$INIT" == @file:* ]]; then INIT=$(cat "${INIT#@file:}"); fi
 ```
 

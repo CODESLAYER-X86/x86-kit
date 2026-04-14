@@ -17,9 +17,9 @@ changes that are irrelevant to code review.
 </objective>
 
 <execution_context>
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/pr-branch.md
+@.claude/get-shit-done/workflows/pr-branch.md
 </execution_context>
 
 <process>
-Execute the pr-branch workflow from @/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/pr-branch.md end-to-end.
+Execute the pr-branch workflow from @.claude/get-shit-done/workflows/pr-branch.md end-to-end.
 </process>

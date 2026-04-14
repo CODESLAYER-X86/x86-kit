@@ -21,9 +21,9 @@ Flow: Select Framework → Research Docs → Research Domain → Design Eval Str
 </objective>
 
 <execution_context>
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/ai-integration-phase.md
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/ai-frameworks.md
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/ai-evals.md
+@.claude/get-shit-done/workflows/ai-integration-phase.md
+@.claude/get-shit-done/references/ai-frameworks.md
+@.claude/get-shit-done/references/ai-evals.md
 </execution_context>
 
 <context>
@@ -31,6 +31,6 @@ Phase number: $ARGUMENTS — optional, auto-detects next unplanned phase if omit
 </context>
 
 <process>
-Execute @/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/ai-integration-phase.md end-to-end.
+Execute @.claude/get-shit-done/workflows/ai-integration-phase.md end-to-end.
 Preserve all workflow gates.
 </process>

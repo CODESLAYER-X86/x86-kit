@@ -20,9 +20,9 @@ Three modes:
 </objective>
 
 <execution_context>
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/undo.md
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/ui-brand.md
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/gate-prompts.md
+@.claude/get-shit-done/workflows/undo.md
+@.claude/get-shit-done/references/ui-brand.md
+@.claude/get-shit-done/references/gate-prompts.md
 </execution_context>
 
 <context>
@@ -30,5 +30,5 @@ $ARGUMENTS
 </context>
 
 <process>
-Execute the undo workflow from @/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/undo.md end-to-end.
+Execute the undo workflow from @.claude/get-shit-done/workflows/undo.md end-to-end.
 </process>

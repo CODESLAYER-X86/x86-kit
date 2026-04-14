@@ -12,7 +12,7 @@ Scan all phases for pending, skipped, blocked, and human_needed UAT items. Cross
 </objective>
 
 <execution_context>
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/audit-uat.md
+@.claude/get-shit-done/workflows/audit-uat.md
 </execution_context>
 
 <context>

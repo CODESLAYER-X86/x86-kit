@@ -25,9 +25,9 @@ Flags:
 </objective>
 
 <execution_context>
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/audit-fix.md
+@.claude/get-shit-done/workflows/audit-fix.md
 </execution_context>
 
 <process>
-Execute the audit-fix workflow from @/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/audit-fix.md end-to-end.
+Execute the audit-fix workflow from @.claude/get-shit-done/workflows/audit-fix.md end-to-end.
 </process>

@@ -93,7 +93,7 @@ Task(
 
 Resolve the debugger model before spawning:
 ```bash
-debugger_model=$(node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" resolve-model gsd-debugger --raw)
+debugger_model=$(node ".claude/get-shit-done/bin/gsd-tools.cjs" resolve-model gsd-debugger --raw)
 ```
 
 ## Step 3: Handle Agent Return

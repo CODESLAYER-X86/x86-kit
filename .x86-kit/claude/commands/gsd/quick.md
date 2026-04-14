@@ -39,7 +39,7 @@ Granular flags are composable: `--discuss --research --validate` gives the same 
 </objective>
 
 <execution_context>
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/quick.md
+@.claude/get-shit-done/workflows/quick.md
 </execution_context>
 
 <context>
@@ -71,7 +71,7 @@ For each directory found:
 - Check if PLAN.md exists
 - Check if SUMMARY.md exists; if so, read `status` from its frontmatter via:
   ```bash
-  node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" frontmatter get .planning/quick/{dir}/SUMMARY.md --field status 2>/dev/null
+  node ".claude/get-shit-done/bin/gsd-tools.cjs" frontmatter get .planning/quick/{dir}/SUMMARY.md --field status 2>/dev/null
   ```
 - Determine directory creation date: `stat -f "%SB" -t "%Y-%m-%d"` (macOS) or `stat -c "%w"` (Linux); fall back to the date prefix in the directory name (format: `YYYYMMDD-` prefix)
 - Derive display status:
@@ -144,7 +144,7 @@ When SUBCMD=resume and SLUG is set (already sanitized):
 
 5. Load context via:
    ```bash
-   node "/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/bin/gsd-tools.cjs" init quick
+   node ".claude/get-shit-done/bin/gsd-tools.cjs" init quick
    ```
 
 6. Proceed to execute the quick workflow with resume context, passing the slug and plan directory so the executor picks up where it left off.
@@ -153,7 +153,7 @@ When SUBCMD=resume and SLUG is set (already sanitized):
 
 When SUBCMD=run:
 
-Execute the quick workflow from @/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/quick.md end-to-end.
+Execute the quick workflow from @.claude/get-shit-done/workflows/quick.md end-to-end.
 Preserve all workflow gates (validation, task description, planning, execution, state updates, commits).
 
 </process>

@@ -10,10 +10,10 @@ Scan `~/gsd-workspaces/` for workspace directories containing `WORKSPACE.md` man
 </objective>
 
 <execution_context>
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/list-workspaces.md
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/ui-brand.md
+@.claude/get-shit-done/workflows/list-workspaces.md
+@.claude/get-shit-done/references/ui-brand.md
 </execution_context>
 
 <process>
-Execute the list-workspaces workflow from @/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/list-workspaces.md end-to-end.
+Execute the list-workspaces workflow from @.claude/get-shit-done/workflows/list-workspaces.md end-to-end.
 </process>

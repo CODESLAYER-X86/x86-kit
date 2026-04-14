@@ -22,9 +22,9 @@ Future: `--prd` mode for PRD extraction is planned for a follow-up PR.
 </objective>
 
 <execution_context>
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/import.md
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/ui-brand.md
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/gate-prompts.md
+@.claude/get-shit-done/workflows/import.md
+@.claude/get-shit-done/references/ui-brand.md
+@.claude/get-shit-done/references/gate-prompts.md
 </execution_context>
 
 <context>

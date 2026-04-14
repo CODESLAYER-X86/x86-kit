@@ -40,7 +40,7 @@ works via Bash and produces equivalent output.
 </documentation_lookup>
 
 <required_reading>
-Read `/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/ai-evals.md` — specifically the rubric design and domain expert sections.
+Read `.claude/get-shit-done/references/ai-evals.md` — specifically the rubric design and domain expert sections.
 </required_reading>
 
 <input>

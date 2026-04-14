@@ -19,8 +19,8 @@ Routes to the profile-user workflow which orchestrates the full flow: consent ga
 </objective>
 
 <execution_context>
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/workflows/profile-user.md
-@/home/codeslayer_x86/codeslayer/projects/x86-kit/.claude/get-shit-done/references/ui-brand.md
+@.claude/get-shit-done/workflows/profile-user.md
+@.claude/get-shit-done/references/ui-brand.md
 </execution_context>
 
 <context>
