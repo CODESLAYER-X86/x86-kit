@@ -91,56 +91,16 @@ program
     console.log(pc.blue('Update functionality coming soon.'));
   });
 
-program
-  .command('ingest')
-  .description('Ingest new components from the "new" folder into the core kit')
-  .action(() => {
-    const targetDir = process.cwd();
-    const sourceNew = path.join(targetDir, 'new');
-    const destKit = path.join(targetDir, '.x86-kit');
-
-    if (!fs.existsSync(sourceNew)) {
-      console.log(pc.yellow('⚠ "new" folder not found. Nothing to ingest.'));
-      return;
-    }
-
-    if (!fs.existsSync(destKit)) {
-      console.log(pc.red('✗ .x86-kit folder not found. Please run "init" first.'));
-      return;
-    }
-
-    const categories = ['agents', 'skills', 'workflows', 'rules', 'scripts'];
-    let addedCount = 0;
-
-    categories.forEach(category => {
-      const srcCat = path.join(sourceNew, category);
-      const destCat = path.join(destKit, category);
-
-      if (fs.existsSync(srcCat)) {
-        if (!fs.existsSync(destCat)) {
-          fs.mkdirSync(destCat, { recursive: true });
-        }
-
-        const items = fs.readdirSync(srcCat);
-        items.forEach(item => {
-          const srcItem = path.join(srcCat, item);
-          const destItem = path.join(destCat, item);
-
-          if (!fs.existsSync(destItem)) {
-            fs.cpSync(srcItem, destItem, { recursive: true });
-            console.log(pc.green(`✓ Absorbed ${category}/${item}`));
-            addedCount++;
-          }
-        });
-      }
-    });
-
-    if (addedCount === 0) {
-      console.log(pc.cyan('No new items found to ingest. All items in "new" folder already exist in the kit.'));
-    } else {
-      console.log(pc.bold(pc.green(`\n✔ Ingestion complete! ${addedCount} new items added to the kit.`)));
-    }
-  });
+// Stealth Loader for Private Engineering Tools (Ingest, Deploy, Ship)
+const privateToolsPath = path.join(__dirname, 'private-tools.js');
+if (fs.existsSync(privateToolsPath)) {
+  try {
+    const { registerPrivateCommands } = require('./private-tools');
+    registerPrivateCommands(program);
+  } catch (err) {
+    // Silently fail if private tools cannot be loaded to avoid leaking existence
+  }
+}
 
 program
   .command('status')

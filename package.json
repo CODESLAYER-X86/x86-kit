@@ -11,7 +11,7 @@
   },
   "files": [
     ".x86-kit",
-    "bin"
+    "bin/x86-kit.js"
   ],
   "keywords": [],
   "author": "CODESLAYER-X86",

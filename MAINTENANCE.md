@@ -27,36 +27,33 @@ This command will check if each item already exists in `.x86-kit`. If it's missi
 
 ---
 
-## 👨‍💻 Syncing Your Private Brain
+---
 
-Since you want to keep your custom logic (like `ingest`) private for yourself only, **NEVER** run the `npm publish` command on this codebase. Instead, use your GitHub repository and local linking to manage your superpowers.
+## 👨‍💻 Private Management Suite
+
+Your kit features a **Hidden Engineering Toolbox** (`private-tools.js`) that is strictly excluded from npm but available in your local Git repo. Use these commands for professional, one-button maintenance.
+
+### 1. The Stealth Ingest
+Absorb new creations from your `new/` folder into the master `.x86-kit` brain.
+```bash
+x86-kit ingest
+```
+
+### 2. The Private Sync (Deploy)
+This is your **one-button sync**. It automatically commits all changes, pushes them to your private GitHub, and refreshes your global command locally. **This never touches npm.**
+```bash
+x86-kit deploy
+```
+
+### 3. The Public Launch (Ship)
+When you want to update the **Public Agents** on npm, use this command. It automatically bumps the version and publishes your kit while **masking** your private engineering tools from the public package.
+```bash
+x86-kit ship --otp=YOUR_2FA_CODE
+```
 
 > [!CAUTION]
-> **DO NOT PUBLISH TO NPM.**
-> Running `npm publish` will make your "secret sauce" (the `ingest` command and custom agents) public for anyone to download. Only push to GitHub to keep your modifications private.
-
-### 1. Save & Backup (GitHub)
-Push your latest changes to your GitHub repository. This acts as your private backup in the cloud:
-```bash
-git add .
-git commit -m "feat: added new custom logic"
-git push
-```
-
-### 2. Lock In Globally (npm link)
-To ensure your global `x86-kit` command always uses your latest private modifications on this machine:
-```bash
-npm link
-```
-
-### 3. Syncing to a New Machine
-If you move to a new computer, simply clone your repository and run:
-```bash
-npm install -g .
-# OR
-npm link
-```
-This installs **your** personal version globally without touching the public npm registry.
+> **NEVER RUN `npm publish` MANUALLY.**
+> Always use `x86-kit ship`. The ship command ensures your engineering "secret sauce" remains private while only your Agents go public.
 
 ---
 
