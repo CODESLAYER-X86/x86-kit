@@ -25,34 +25,38 @@ This command will check if each item already exists in `.x86-kit`. If it's missi
 
 ---
 
-## 👨‍💻 For You: Publishing Updates
+---
 
-Whenever you improve an agent, add a new skill, or refine a workflow, follow these steps to push the update to the public.
+## 👨‍💻 Syncing Your Private Brain
 
-### 1. Save Your Changes
-First, ensure all your code changes are committed to Git:
+Since you want to keep your custom logic (like `ingest`) private for yourself only, **NEVER** run the `npm publish` command on this codebase. Instead, use your GitHub repository and local linking to manage your superpowers.
+
+> [!CAUTION]
+> **DO NOT PUBLISH TO NPM.**
+> Running `npm publish` will make your "secret sauce" (the `ingest` command and custom agents) public for anyone to download. Only push to GitHub to keep your modifications private.
+
+### 1. Save & Backup (GitHub)
+Push your latest changes to your GitHub repository. This acts as your private backup in the cloud:
 ```bash
 git add .
-git commit -m "feat: described your new feature here"
+git commit -m "feat: added new custom logic"
+git push
 ```
 
-### 2. Bump the Version
-Use the `npm version` command to increment the project version. 
-- For small fixes: `npm version patch` (e.g., 1.0.1 → 1.0.2)
-- For new features: `npm version minor` (e.g., 1.0.1 → 1.1.0)
-- For major overhauls: `npm version major` (e.g., 1.0.1 → 2.0.0)
-
-### 3. Publish to npm
-Since you have 2FA enabled, you must provide your OTP (One-Time Password) from your authenticator app:
+### 2. Lock In Globally (npm link)
+To ensure your global `x86-kit` command always uses your latest private modifications on this machine:
 ```bash
-npm publish --access public --otp=YOUR_CODE
+npm link
 ```
 
-### 4. Sync GitHub
-Always keep your GitHub repository in sync with the npm version:
+### 3. Syncing to a New Machine
+If you move to a new computer, simply clone your repository and run:
 ```bash
-git push --follow-tags
+npm install -g .
+# OR
+npm link
 ```
+This installs **your** personal version globally without touching the public npm registry.
 
 ---
 
@@ -79,8 +83,8 @@ If a project already has an `.x86-kit` folder but needs the latest agents/skills
 
 ## 💡 Best Practices
 - **Atomic Commits:** Try to commit one feature or fix at a time.
-- **Test Before Publishing:** Run `x86-kit status` or check your files locally before pushing to npm.
-- **Changelog:** It's helpful to briefly update the `README.md` "What's Inside" section if you add a major new agent category.
+- **Local Testing:** Test your new agents using `x86-kit ingest` and then verify they work in a test project.
+- **Documentation:** If you add a major new agent, update the `README.md` "What's Inside" section so you remember what it does!
 
 ---
 **Happy Orchestrating!** 🚀
