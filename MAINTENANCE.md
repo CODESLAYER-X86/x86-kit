@@ -4,6 +4,27 @@ This guide explains how to maintain the `x86-kit` project, publish new features 
 
 ---
 
+## 📥 Local Ingestion Workflow
+
+You can stage new agents, skills, and workflows in the `new/` directory. The kit can then "absorb" them into the master `.x86-kit` folder without overwriting existing logic.
+
+### 1. Stage Your New Items
+Create your new components inside the `new/` folder using the standard structure:
+- `new/agents/my-agent.md`
+- `new/skills/my-skill/`
+- `new/workflows/my-workflow.md`
+
+### 2. Run Ingest
+From the root of the project, run:
+```bash
+node bin/x86-kit.js ingest
+```
+*(Or simply `x86-kit ingest` if installed globally)*.
+
+This command will check if each item already exists in `.x86-kit`. If it's missing, it will be added. If it exists, it will be skipped (protecting your master files).
+
+---
+
 ## 👨‍💻 For You: Publishing Updates
 
 Whenever you improve an agent, add a new skill, or refine a workflow, follow these steps to push the update to the public.
