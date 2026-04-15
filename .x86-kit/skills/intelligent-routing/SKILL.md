@@ -35,21 +35,22 @@ graph TD
 
 **Use this matrix to automatically select agents:**
 
-| User Intent         | Keywords                                   | Selected Agent(s)                           | Auto-invoke? |
-| ------------------- | ------------------------------------------ | ------------------------------------------- | ------------ |
-| **Authentication**  | "login", "auth", "signup", "password"      | `security-auditor` + `backend-specialist`   | ✅ YES       |
-| **UI Component**    | "button", "card", "layout", "style"        | `frontend-specialist`                       | ✅ YES       |
-| **Mobile UI**       | "screen", "navigation", "touch", "gesture" | `mobile-developer`                          | ✅ YES       |
-| **API Endpoint**    | "endpoint", "route", "API", "POST", "GET"  | `backend-specialist`                        | ✅ YES       |
-| **Database**        | "schema", "migration", "query", "table"    | `database-architect` + `backend-specialist` | ✅ YES       |
-| **Bug Fix**         | "error", "bug", "not working", "broken"    | `debugger`                                  | ✅ YES       |
-| **Test**            | "test", "coverage", "unit", "e2e"          | `test-engineer`                             | ✅ YES       |
-| **Deployment**      | "deploy", "production", "CI/CD", "docker"  | `devops-engineer`                           | ✅ YES       |
-| **Security Review** | "security", "vulnerability", "exploit"     | `security-auditor` + `penetration-tester`   | ✅ YES       |
-| **Performance**     | "slow", "optimize", "performance", "speed" | `performance-optimizer`                     | ✅ YES       |
-| **Product Def**     | "requirements", "user story", "backlog", "MVP" | `product-owner`                             | ✅ YES       |
-| **New Feature**     | "build", "create", "implement", "new app"  | `orchestrator` → multi-agent                | ⚠️ ASK FIRST |
-| **Complex Task**    | Multiple domains detected                  | `orchestrator` → multi-agent                | ⚠️ ASK FIRST |
+| User Intent          | Keywords                                                               | Selected Agent(s)                           | Auto-invoke? |
+| -------------------- | ---------------------------------------------------------------------- | ------------------------------------------- | ------------ |
+| **Authentication**   | "login", "auth", "signup", "password"                                 | `security-auditor` + `backend-specialist`   | ✅ YES       |
+| **Zero Trust / Auth Design** | "zero trust", "rbac", "roles", "permissions", "who can access", "secure my app", "auth architecture", "API security", "RLS", "least privilege" | `security-auditor` (skill: `zero-trust-system-designer`) | ✅ YES |
+| **UI Component**     | "button", "card", "layout", "style"                                   | `frontend-specialist`                       | ✅ YES       |
+| **Mobile UI**        | "screen", "navigation", "touch", "gesture"                            | `mobile-developer`                          | ✅ YES       |
+| **API Endpoint**     | "endpoint", "route", "API", "POST", "GET"                             | `backend-specialist`                        | ✅ YES       |
+| **Database**         | "schema", "migration", "query", "table"                               | `database-architect` + `backend-specialist` | ✅ YES       |
+| **Bug Fix**          | "error", "bug", "not working", "broken"                               | `debugger`                                  | ✅ YES       |
+| **Test**             | "test", "coverage", "unit", "e2e"                                     | `test-engineer`                             | ✅ YES       |
+| **Deployment**       | "deploy", "production", "CI/CD", "docker"                             | `devops-engineer`                           | ✅ YES       |
+| **Security Review**  | "security", "vulnerability", "exploit"                                | `security-auditor` + `penetration-tester`   | ✅ YES       |
+| **Performance**      | "slow", "optimize", "performance", "speed"                            | `performance-optimizer`                     | ✅ YES       |
+| **Product Def**      | "requirements", "user story", "backlog", "MVP"                         | `product-owner`                             | ✅ YES       |
+| **New Feature**      | "build", "create", "implement", "new app"                             | `orchestrator` → multi-agent                | ⚠️ ASK FIRST |
+| **Complex Task**     | Multiple domains detected                                              | `orchestrator` → multi-agent                | ⚠️ ASK FIRST |
 
 ### 3. Automatic Routing Protocol
 
@@ -100,19 +101,20 @@ function analyzeRequest(userMessage) {
 
 ### Single-Domain Tasks (Auto-invoke Single Agent)
 
-| Domain          | Patterns                                   | Agent                   |
-| --------------- | ------------------------------------------ | ----------------------- |
-| **Security**    | auth, login, jwt, password, hash, token    | `security-auditor`      |
-| **Frontend**    | component, react, vue, css, html, tailwind | `frontend-specialist`   |
-| **Backend**     | api, server, express, fastapi, node        | `backend-specialist`    |
-| **Mobile**      | react native, flutter, ios, android, expo  | `mobile-developer`      |
-| **Database**    | prisma, sql, mongodb, schema, migration    | `database-architect`    |
-| **Testing**     | test, jest, vitest, playwright, cypress    | `test-engineer`         |
-| **DevOps**      | docker, kubernetes, ci/cd, pm2, nginx      | `devops-engineer`       |
-| **Debug**       | error, bug, crash, not working, issue      | `debugger`              |
-| **Performance** | slow, lag, optimize, cache, performance    | `performance-optimizer` |
-| **SEO**         | seo, meta, analytics, sitemap, robots      | `seo-specialist`        |
-| **Game**        | unity, godot, phaser, game, multiplayer    | `game-developer`        |
+| Domain              | Patterns                                                                      | Agent                   |
+| ------------------- | ----------------------------------------------------------------------------- | ----------------------- |
+| **Security**        | auth, login, jwt, password, hash, token                                       | `security-auditor`      |
+| **Zero Trust**      | zero trust, rbac, rls, roles, permissions, least privilege, org_id, tenant    | `security-auditor` (+ skill: `zero-trust-system-designer`) |
+| **Frontend**        | component, react, vue, css, html, tailwind                                    | `frontend-specialist`   |
+| **Backend**         | api, server, express, fastapi, node                                            | `backend-specialist`    |
+| **Mobile**          | react native, flutter, ios, android, expo                                      | `mobile-developer`      |
+| **Database**        | prisma, sql, mongodb, schema, migration                                        | `database-architect`    |
+| **Testing**         | test, jest, vitest, playwright, cypress                                         | `test-engineer`         |
+| **DevOps**          | docker, kubernetes, ci/cd, pm2, nginx                                          | `devops-engineer`       |
+| **Debug**           | error, bug, crash, not working, issue                                          | `debugger`              |
+| **Performance**     | slow, lag, optimize, cache, performance                                        | `performance-optimizer` |
+| **SEO**             | seo, meta, analytics, sitemap, robots                                          | `seo-specialist`        |
+| **Game**            | unity, godot, phaser, game, multiplayer                                        | `game-developer`        |
 
 ### Multi-Domain Tasks (Auto-invoke Orchestrator)
 

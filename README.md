@@ -16,7 +16,7 @@ You can install `x86-kit` globally on your computer with a **single command**.
 Ensure you have [Node.js](https://nodejs.org/) installed, and run:
 
 ```bash
-npm install -g github:CODESLAYER-X86/x86-kit
+npm install -g x86-kit
 ```
 
 This makes the `x86-kit` command available recursively forever on any terminal.
